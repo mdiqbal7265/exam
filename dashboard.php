@@ -26,7 +26,38 @@
         </div>
         <div class="col-lg-8"><br><br>
             <?php if ($enroll_data) : ?>
-                <h1 class="text-center text-success">ধন্যবাদ কোর্সে Enroll করার জন্য। আমাদের সাথে থাকুন, খুব শীঘ্রই আমাদের ফেজবুক পেজ, গ্রুপ এবং ওয়েবসাইটে পরিক্ষার রুটিন প্রকাশ করা হবে।</h1>
+                <div class="row">
+                    <?php 
+                        if($exam_by_specific_id): 
+                        foreach ($exam_by_specific_id as $key => $value) :
+                    ?>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"><?= $value['title']; ?></h3>
+                            </div>
+                            <div class="card-body">
+                                <strong>Exam Type:- <?= $value['type']; ?></strong> <br>
+                                <strong>Exam Duration:- <?= $value['duration']; ?></strong> <br>
+                                <strong>Total Question:- <?= $value['total_question']; ?></strong> <br>
+                                <strong>Total Mark:- <?= $value['total_mark']; ?></strong> <br>
+                                <strong>Negative Mark:- <?= $value['negetive_marks']; ?></strong> <br>
+                                <strong>Passed Mark:- <?= $value['pass_parcentage']; ?></strong> <br>
+                                <strong>Start Exam:- <?= date("d M Y H:i:s", strtotime($value['exam_started'])) ?></strong> <br>
+                                <strong>End Exam:- <?= date("d M Y H:i:s",strtotime($value['exam_end'])) ?></strong> <br>                                
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="btn btn-primary btn-block">Start Exam</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php 
+                    endforeach;
+                    else: ?>
+                        <h2 class="text-center text-danger">No exam Here</h2>
+                    <?php endif; ?>
+                    
+                </div>
             <?php else : ?>
                 <div class="row" style="justify-content: center">
                     <?php include 'include/cat_section.php'; ?>

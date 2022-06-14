@@ -28,6 +28,13 @@ if(isset($_SESSION['member'])){
     $db->where("enroll.user_id", $user_id,);
     $db->where('enroll.status','Accepted');
     $enroll_data = $db->getOne("enroll","category.cat_name, enroll.*");
+
+    // Fetch Exam By Specific Category
+    if($enroll_data){
+        $cat_id = $enroll_data['cat_id'];
+        $db->where('cat_id', $cat_id);
+        $exam_by_specific_id = $db->get('exam');
+    }
 }
 
 
@@ -45,3 +52,4 @@ $exam_end_time = strtotime($exam['exam_end']);
 
 $db->where('exam_id',$exam_id);
 $question = $db->get('question');
+
