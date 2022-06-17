@@ -13,10 +13,10 @@
  * (1) https://ckeditor.com/cke4/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) https://ckeditor.com/cke4/builder/e42fd6be3b5f6320067d579feaa5c0b9
+ * (2) https://ckeditor.com/cke4/builder/4944da2dc4b081995372853f349af57b
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) https://ckeditor.com/cke4/builder/download/e42fd6be3b5f6320067d579feaa5c0b9
+ * (3) https://ckeditor.com/cke4/builder/download/4944da2dc4b081995372853f349af57b
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -54,10 +54,12 @@ var CKBUILDER_CONFIG = {
 		'tests'
 	],
 	plugins : {
-		'Text2Speech' : 1,
+		'a11yhelp' : 1,
+		'about' : 1,
 		'basicstyles' : 1,
 		'blockquote' : 1,
 		'ckeditor_wiris' : 1,
+		'clipboard' : 1,
 		'contextmenu' : 1,
 		'elementspath' : 1,
 		'enterkey' : 1,
@@ -72,8 +74,12 @@ var CKBUILDER_CONFIG = {
 		'link' : 1,
 		'list' : 1,
 		'magicline' : 1,
+		'mathjax' : 1,
 		'maximize' : 1,
-		'prism' : 1,
+		'pastefromgdocs' : 1,
+		'pastefromlibreoffice' : 1,
+		'pastefromword' : 1,
+		'pastetext' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
 		'scayt' : 1,
@@ -81,7 +87,6 @@ var CKBUILDER_CONFIG = {
 		'sourcearea' : 1,
 		'specialchar' : 1,
 		'stylescombo' : 1,
-		'syntaxhighlight' : 1,
 		'tab' : 1,
 		'table' : 1,
 		'tableselection' : 1,

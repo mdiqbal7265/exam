@@ -56,7 +56,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetchStudent') {
                     <img src='../assets/img/" . $value['photo'] . "' width='32px' alt=''>
                 </td>
                 <td>{$value['name']}</td>
-                <td>{$value['email']} </td>
+                <td>{$value['clg_name']} </td>
                 <td>{$value['phone']}</td>
                 <td>{$value['username']}</td>
                 <td>{$value['user_id']}</td>
@@ -499,4 +499,46 @@ if (isset($_POST['action']) && $_POST['action'] == 'dltFreeRegisterStudent') {
     $id = $_POST['id'];
     $db->where('id', $id);
     $db->delete('free_exam');
+}
+
+// Handle Add Student
+if (isset($_POST['action']) && $_POST['action'] == 'add_student') {
+    $name = $help->sanitize_data($_POST['name']);
+    $clg_name = $help->sanitize_data($_POST['clg_name']);
+    $phone = $help->sanitize_data($_POST['phone']);
+    $email = $help->sanitize_data($_POST['email']);
+
+    $data = [
+        'name' => $name,
+        'clg_name' => $clg_name,
+        'phone' => $phone,
+        'email' => $email,
+        'user_id' => $help->userId(),
+    ];
+
+    if ($db->insert('member', $data)) {
+        echo 'added';
+    } else {
+        echo $db->getLastError();
+    }
+    
+}
+
+// Handle Add Enroll Student
+if (isset($_POST['action']) && $_POST['action'] == 'add_enroll') {
+    $user_id = $help->sanitize_data($_POST['user_id']);
+    $cat_id = $help->sanitize_data($_POST['cat_id']);
+
+    $data = [
+        'user_id' => $user_id,
+        'cat_id' => $cat_id,
+        'status' => 'Accepted',
+    ];
+
+    if ($db->insert('enroll', $data)) {
+        echo 'added';
+    } else {
+        echo $db->getLastError();
+    }
+    
 }

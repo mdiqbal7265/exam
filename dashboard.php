@@ -41,13 +41,58 @@
                                 <strong>Exam Duration:- <?= $value['duration']; ?></strong> <br>
                                 <strong>Total Question:- <?= $value['total_question']; ?></strong> <br>
                                 <strong>Total Mark:- <?= $value['total_mark']; ?></strong> <br>
-                                <strong>Negative Mark:- <?= $value['negetive_marks']; ?></strong> <br>
-                                <strong>Passed Mark:- <?= $value['pass_parcentage']; ?></strong> <br>
+                                <strong>Negative Mark:- <?= $value['negetive_marks']; ?>%</strong> <br>
+                                <strong>Passed Mark:- <?= $value['pass_parcentage']; ?>%</strong> <br>
                                 <strong>Start Exam:- <?= date("d M Y H:i:s", strtotime($value['exam_started'])) ?></strong> <br>
-                                <strong>End Exam:- <?= date("d M Y H:i:s",strtotime($value['exam_end'])) ?></strong> <br>                                
+                                <strong>End Exam:- <?= date("d M Y H:i:s",strtotime($value['exam_end'])) ?></strong> <br>
+                                                               
                             </div>
                             <div class="card-footer">
-                                <a href="#" class="btn btn-primary btn-block">Start Exam</a>
+                                <script>
+                                    var start_time = new Date('<?= $value['exam_started'] ?>');
+                                    CountDownTimer(start_time, 'countdown');
+
+                                    function CountDownTimer(dt, id)
+                                    {
+                                        var end = dt;
+
+                                        var _second = 1000;
+                                        var _minute = _second * 60;
+                                        var _hour = _minute * 60;
+                                        var _day = _hour * 24;
+                                        var timer;
+
+                                        function showRemaining() {
+                                            var now = new Date();
+                                            var distance = end - now;
+                                            if (distance < 0) {
+
+                                                clearInterval(timer);
+                                                document.getElementById("btn").style.display = "block";
+                                                document.getElementById("countdown").style.display = "none";
+                                                return;
+                                            }
+                                            var days = Math.floor(distance / _day);
+                                            var hours = Math.floor((distance % _day) / _hour);
+                                            var minutes = Math.floor((distance % _hour) / _minute);
+                                            var seconds = Math.floor((distance % _minute) / _second);
+
+                                            document.getElementById(id).innerHTML = days + 'days ';
+                                            document.getElementById(id).innerHTML += hours + 'hrs ';
+                                            document.getElementById(id).innerHTML += minutes + 'mins ';
+                                            document.getElementById(id).innerHTML += seconds + 'secs';
+                                        }
+
+                                        timer = setInterval(showRemaining, 1000);
+                                    }
+
+                                </script>
+                                <h4 id="countdown" class="text-center text-danger"></h4>
+                                <?php if(!$answer): ?>
+                                <a href="exam.php?exam_id=<?= $value['id']; ?>" id="btn" style="display: none;" class="btn btn-primary btn-block">Start Exam</a>
+                                <?php else: ?>
+                                    <strong class="text-center text-danger">You Already Gave Exam. Result Will be Published at 10 PM</strong>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

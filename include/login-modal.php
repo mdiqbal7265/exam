@@ -14,10 +14,6 @@
                         <input type="text" name="username" class="form-control" placeholder="Username/userId" id="username" required="required">
                     </div>
                     <div class="form-group">
-                        <i class="fa fa-lock text-danger"></i>
-                        <input type="password" name="password" class="form-control" placeholder="Password" id="password" required="required">
-                    </div>
-                    <div class="form-group">
                         <input type="submit" id="login_btn" class="btn btn-danger btn-block btn-lg" value="Login">
                     </div>
                 </form>

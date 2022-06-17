@@ -44,3 +44,13 @@ if (isset($_GET['exam_id']) && $_GET['exam_id'] != null) {
 
 
 }
+
+
+// total Student
+$total_student = $db->getValue('member', 'count(*)');
+$total_enroll = $db->getValue('enroll', 'count(*)');
+$total_exam = $db->getValue('exam', 'count(*)');
+$total_payment = $db->getValue('enroll', 'count(*)');
+$total_payment = $total_payment * 20;
+
+$student = $db->get('member');

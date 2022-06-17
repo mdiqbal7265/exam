@@ -16,10 +16,18 @@
 		<br><br>
 		<hr class="donar_card_hr">
 		<br><br>
-		<div style="border: 1px solid red;" class="shadow p-3 mb-5 bg-white rounded">
-			<h1 class="text-danger text-center">ফ্রি এক্সাম দেওয়ার জন্য এখানে ক্লিক করুন। <a href="freeexam.php" class="btn btn-danger ml-3">Free Exam</a></h1>
-		</div>
-		
+		<?php 
+			if($exam):
+			if($exam_end_time >= strtotime(date("Y-m-d H:i:s"))):
+		?>
+			<div style="border: 1px solid red;" class="shadow p-3 mb-5 bg-white rounded">
+				<h1 class="text-danger text-center">ফ্রি এক্সাম দেওয়ার জন্য এখানে ক্লিক করুন। <a href="freeexam.php" class="btn btn-danger ml-3">Free Exam</a></h1>
+			</div>
+		<?php else: ?>
+			<div style="border: 1px solid red;" class="shadow p-3 mb-5 bg-white rounded">
+				<h1 class="text-danger text-center">ফ্রি এক্সাম এর রেজাল্ট প্রকাশিত হয়েছে। রেজাল্ট দেখতে এখানে ক্লিক করুন <a href="result.php" class="btn btn-danger ml-3">Result</a></h1>
+			</div>
+		<?php endif; endif; ?>
 
 		<!-- Doner Card -->
 		<p class="text-center text-danger doner-title">অনলাইনে amuse exam এর সাথে প্রস্তুতির জন্য নিচের কোর্সগুলো <br> থেকে পছন্দের কোর্সে Enroll করে শুরু করো তোমার জার্নি...</p>

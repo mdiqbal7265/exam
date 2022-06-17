@@ -205,7 +205,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/js/all.min.js"></script>
 <script src="assets/js/sweetalert2/sweetalert2.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 <script src="assets/js/custom.js"></script>
+<?php if(isset($exam_duration)): ?>
 <script>
     var duration = '<?php echo $exam_duration; ?>';
     var c = 60 * duration;
@@ -250,6 +252,7 @@
         }, 1000);
   }
 </script>
+<?php endif; ?>
 </body>
 
 </html>

@@ -146,14 +146,13 @@ class Helper
 
         $question_per_marks = $total_mark / $total_question;
 
-        $this->db->where('id', $user_id);
-        $free_exam_data = $this->db->getOne('free_exam');
+        $this->db->where('user_id', $user_id);
+        $member_data = $this->db->getOne('answer');
         $total_correct_ans = 0;
         $total_incorrect_ans = 0;
 
 
-        $result = json_decode($free_exam_data['answer'], true);
-        echo $free_exam_data['name']."\n";
+        $result = json_decode($member_data['answer'], true);
         foreach($result as $key => $val){
             $this->db->where('id', $key);
             $question = $this->db->getOne('question');

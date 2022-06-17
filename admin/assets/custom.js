@@ -2,6 +2,9 @@ $(document).ready(function() {
   // Summmernote
   $("#summernote").summernote();
   $(".summernote").summernote();
+
+  $(".select2").select2();
+
   // ckeditor
   CKEDITOR.plugins.addExternal(
     "ckeditor_wiris",
@@ -10,6 +13,8 @@ $(document).ready(function() {
   );
 
   var editor_config = {
+    mathJaxLib:
+      "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML",
     extraPlugins: "ckeditor_wiris",
     height: 50,
     toolbar: [
@@ -17,10 +22,7 @@ $(document).ready(function() {
         name: "basicstyles",
         items: ["Bold", "Italic", "Strike", "-", "RemoveFormat"]
       },
-      {
-        name: "insert",
-        items: ["Image"]
-      },
+      { name: "insert", items: ["Image"] },
       {
         name: "wiris",
         items: [
@@ -29,7 +31,8 @@ $(document).ready(function() {
           "ckeditor_wiris_formulaEditorChemistry"
         ]
       },
-      { name: "tools", items: ["Maximize"] }
+      { name: "tools", items: ["Maximize"] },
+      { name: "someName", items: ["Mathjax"] }
     ]
   };
   // Question
@@ -551,7 +554,7 @@ $(document).ready(function() {
           "selected",
           true
         );
-        $("#edit_total_marks").val(data.total_marks);
+        $("#edit_total_marks").val(data.total_mark);
         $("#edit_total_question").val(data.total_question);
         $("#edit_negative_marks").val(data.negetive_marks);
         $("#edit_pass_marks").val(data.pass_parcentage);
@@ -688,6 +691,56 @@ $(document).ready(function() {
     e.preventDefault();
     id = $(this).attr("id");
     deleteData("dltFreeRegisterStudent", id, fetchFreeExamStudent);
+  });
+
+  // Add Student
+  $("#add-student-btn").click(function(e) {
+    e.preventDefault();
+    $("#add-student-btn").val("Please Wait...");
+    $.ajax({
+      type: "POST",
+      url: "../lib/admin.php",
+      data: $("#add-student-form").serialize() + "&action=add_student",
+      success: function(response) {
+        $("#add-student-btn").val("Add Student");
+        $("#add-student-form")[0].reset();
+        $("#add-student-modal").modal("hide");
+        if (response == "added") {
+          Toast.fire({
+            icon: "success",
+            title: "Student Added Successfully!"
+          });
+        } else {
+          Toast.fire({ icon: "error", title: response });
+        }
+        fetchStudent();
+      }
+    });
+  });
+
+  // Add Enroll
+  $("#add-enroll-btn").click(function(e) {
+    e.preventDefault();
+    $("#add-enroll-btn").val("Please Wait...");
+    $.ajax({
+      type: "POST",
+      url: "../lib/admin.php",
+      data: $("#add-enroll-form").serialize() + "&action=add_enroll",
+      success: function(response) {
+        $("#add-enroll-btn").val("Add Enroll");
+        $("#add-enroll-form")[0].reset();
+        $("#add-enroll-modal").modal("hide");
+        if (response == "added") {
+          Toast.fire({
+            icon: "success",
+            title: "Enroll Added Successfully!"
+          });
+        } else {
+          Toast.fire({ icon: "error", title: response });
+        }
+        fetchEnrollStudent();
+      }
+    });
   });
 
   /**************** End ***************/

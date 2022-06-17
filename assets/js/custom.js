@@ -75,9 +75,9 @@ $(document).ready(function() {
       e.preventDefault();
       $("#register_btn").val("Please Wait...");
       if (
-        $("#rusername").val() == "" ||
-        $("#rpassword").val() == "" ||
-        $("#name").val() == "" ||
+        $("#rusername").val() == "" &&
+        $("#rpassword").val() == "" &&
+        $("#name").val() == "" &&
         $("#phone").val() == ""
       ) {
         showToast(
@@ -129,7 +129,7 @@ $(document).ready(function() {
   $("#login_btn").click(function(e) {
     e.preventDefault();
     $("#login_btn").val("Please Wait...");
-    if ($("#username").val() == "" || $("#password").val() == "") {
+    if ($("#username").val() == "") {
       showToast(
         "Warning",
         "Username Or Password field doesn't empty",
@@ -317,5 +317,19 @@ $(document).ready(function() {
     });
   });
 
+  // Result Search Btn
+  $("#result_search_btn").click(function(e) {
+    e.preventDefault();
+    var number = $("#number").val();
+    $.ajax({
+      type: "POST",
+      url: "lib/action.php",
+      data: { number: number, action: "result_search" },
+      success: function(response) {
+        $("#result_body").html(response);
+        console.log(response);
+      }
+    });
+  });
   /************ END ***********/
 });

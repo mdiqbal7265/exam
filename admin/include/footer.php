@@ -31,6 +31,8 @@
        <script src="assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
        <script src="assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
        <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+       <!-- Select2 -->
+<script src="assets/plugins/select2/js/select2.full.min.js"></script>
        <!-- Summernote -->
        <script src="assets/plugins/summernote/summernote-bs4.min.js"></script>
        <!-- CkEditor -->

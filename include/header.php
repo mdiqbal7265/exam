@@ -1,3 +1,6 @@
+<?php
+	error_reporting(0);
+?>
 <?php include 'lib/session.php'; ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +16,7 @@
     <script src="https://www.wiris.net/demo/plugins/app/WIRISplugins.js?viewer=image"></script>
 	    <!-- SweetAlert2 -->
     <link rel="stylesheet" href="assets/js/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">	
 </head>
 
 <body>
